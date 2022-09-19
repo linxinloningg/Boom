@@ -172,6 +172,8 @@ Options:
 >### 效果展现
 >
 >![](README.assets/test.gif)
+>
+>![](README.assets/Screenshot_20220919_173722_com.android.mms.jpg)
 
 ### Flask 前端调试
 
