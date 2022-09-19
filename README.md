@@ -72,193 +72,113 @@
 * ## 部署Boom
 
   >* 克隆代码
-  >* 
+  >
+  >  ```bash
+  >  git clone https://github.com/linxinloningg/Boom.git
+  >  ```
+  >
+  >* 配置环境
+  >
+  >  **前提条件:** 请确保自己的电脑有 `python3.x` 的环境,推荐使用 `3.8` 及以上!  
+  >
+  >  推荐使用conda虚拟环境
+  >
+  >  ```bash
+  >  # 创建新的虚拟环境
+  >  conda create -n boom python=3.8
+  >  ```
+  >
+  >  ```bash
+  >  # 激活虚拟环境
+  >  conda activate boom
+  >  # 下载依赖
+  >  cd Boom
+  >  pip install -r requirements.txt
+  >  ```
+  >
+  >* 尝试启动
+  >
+  >  ```bash
+  >  python main.py
+  >  ```
+  >
+  >  前端测试api界面
+  >
+  >  ```bash
+  >  python run_flask_app.py start
+  >  ```
 
-### 适用于大佬
+### 开启轰炸  
 
-#### 下载项目
-
-- 方法一：使用Git:  
-
-```shell
-git clone https://github.com/AdminWhaleFall/SMSBoom.git/
-```
-
-> 墙国加速
->  
-> ```shell
-> git clone https://github.do/https://github.com/AdminWhaleFall/SMSBoom.git
-> ```
-
-- 方法二：点击下载[项目压缩包](https://github.com/AdminWhaleFall/SMSBoom/archive/refs/heads/master.zip)并解压.  
-
-#### 配置环境  
-
-**前提条件:** 请确保自己的电脑有 `python3.x` 的环境,推荐使用 `3.8` 及以上!  
-
-方案一: 有 `Python3.8` 环境的可以使用 `pipenv` 工具.
-
-1. 安装 pipenv 包管理工具.  
-```shell
-pip install pipenv
-```
-
-2. 为项目构建虚拟环境.  
-```shell
-pipenv install  # 仅使用轰//炸功能
-pipenv install --dev # 使用 webui 调试接口功能.
-```
-
-3. 尝试运行 smsboom.py  
-```shell
-pipenv shell # 激活虚拟环境
-python smsboom.py  # linux
-```
-
-若无报错，输出帮助信息，则说明环境已经正确安装。若报错请使用方案二
-
-方案二: 只有 `Python3.X` 环境的需要使用原生 `pip` 工具.
-
-1. 安装所需要的库
-```shell
-pip install -r requirements.txt # 仅使用轰//炸
-pip install -r requirements-dev.txt # 使用 webui
-```
-
-2. 尝试运行 smsboom.py
-```shell
-python smsboom.py 
-```
-
-若无报错，输出帮助信息，则说明环境已经正确安装。
-
-#### 使用 Docker 运行
-
-##### 方式一: 一键运行
+帮助信息:
 
 ```shell
-docker run --rm lanqsh/smsboom run -t 1 -p {PHONE} -i 1
-```
+PS C:\Users\Administrator\Desktop\Boom> python .\main.py  
 
-#####  方式二: 自建镜像
-
-**前提条件:** 请确保当前环境已安装 [Docker](https://docs.docker.com/get-docker/).
-
-1. 构建镜像
-
-```shell
-docker build -t whalefell/smsboom .
-```
-
-2. 尝试运行
-
-```shell
-docker run --rm whalefell/smsboom:latest --help
-
-Usage: smsboom.py [OPTIONS] COMMAND [ARGS]...
+Usage: main.py [OPTIONS] COMMAND [ARGS]...
 
 Options:
   --help  Show this message and exit.
 
 Commands:
-  asyncrun  以最快的方式请求接口(真异步百万并发)
-  onerun    单线程(测试使用)
-  run       传入线程数和手机号启动轰炸,支持多手机号
-  update    从 github 获取最新接口
+  async-run  以最快的方式请求接口(真异步百万并发)
+  one-run    单线程(测试使用)
+  run        传入线程数和手机号启动轰炸,支持多手机号
+  update     从 github 获取最新接口
 ```
 
-#### 运行  
-
-若使用虚拟环境,请先激活. `pipenv shell`
+* ### run
 
 ```shell
-# 输出帮助信息
-python smsboom.py --help
+PS C:\Users\Administrator\Desktop\Boom> python .\main.py run --help
+Usage: main.py run [OPTIONS]
 
-Usage: smsboom.py [OPTIONS] COMMAND [ARGS]...    
-Options:
---help  Show this message and exit.
-Commands:
-run     传入线程数和手机号启动轰//炸,支持多手机号
-update  从 github 获取最新接口
-```
-
-- 启动轰//炸  
-
-帮助信息:
-
-```shell
-python smsboom.py run --help
-
-Usage: smsboom.py run [OPTIONS]
-
-传入线程数和手机号启动轰//炸,支持多手机号
+  传入线程数和手机号启动轰炸,支持多手机号
 
 Options:
--t, --thread INTEGER       线程数(默认64)
--p, --phone TEXT           手机号,可传入多个再使用-p传递  [required]
--f, --frequency INTEGER    执行次数(默认1次)
--i, --interval INTEGER     间隔时间(默认60s)
--e, --enable_proxy BOOLEAN 开启代理(默认关闭)
---help                     Show this message and exit.
+  -t, --thread INTEGER    线程数(默认64)
+  -p, --phone TEXT        手机号,可传入多个再使用-p传递  [required]
+  -i, --interval INTEGER  间隔时间(默认60s)
+  -e, --proxies INTEGER   一次攻击所需代理(默认10),不使用代理则设为0
+  --help                  Show this message and exit.
 ```
 
-### 使用代理
-
-本项目不能通过API自动获取代理, 你可以从下面的免费代理网站中手动获取代理, 或是选择使用自己的代理, 或是不使用代理.
-
-> [https://proxyscrape.com/free-proxy-list](https://proxyscrape.com/free-proxy-list)
-
-> [https://openproxy.space/list](https://openproxy.space/list)
-
-将代理添加到 `http_proxy.txt` `socks4_proxy.txt` `socks5_proxy.txt` 三个文件中, 命令参数添加 `-e` 执行即可.
-
-### 命令示例
-
-启动64个线程,轰//炸一个人的手机号(198xxxxxxxx),只轰//炸一波。
-
-```shell
-python smsboom.py run -t 64 -p 198xxxxxxxx
-```
-
-启动64个线程,轰//炸一个人的手机号(198xxxxxxxx),启动循环轰//炸, 轮番轰//炸60次
-
-```shell
-python smsboom.py run -t 64 -p 198xxxxxxxx -f 60
-```
-
-启动64个线程,轰//炸一个人的手机号(198xxxxxxxx),启动循环轰//炸, 轮番轰//炸60次, 每次间隔30秒
-
-```shell
-python smsboom.py run -t 64 -p 198xxxxxxxx -f 60 -i 30
-```
-
-启动64个线程,轰//炸一个人的手机号(198xxxxxxxx),启动循环轰//炸, 轮番轰//炸60次, 每次间隔30秒, 开启代理列表进行轰炸
-
-```shell
-python smsboom.py run -t 64 -p 198xxxxxxxx -f 60 -i 30 -e
-```
-
-启动64个线程,轰//炸多个人的手机号(198xxxxxxxx,199xxxxxxxx),启动循环轰//炸, 轮番轰炸60次, 每次间隔30秒, 开启代理列表进行轰炸
-
-```shell
-python smsboom.py run -t 64 -p 198xxxxxxxx -p 199xxxxxxxx -f 60 -i 30 -e
-```
-
-## Development
-
-程序提供接口调试工具，但目前还不完善，欢迎前端大佬 PR。  
-调试工具以 `Flask` 为后端，`vue` 为前端，实现前后端分离。  
-目前只有测试接口，添加接口的功能。
+>### 命令示例
+>
+>启动64个线程,轰//炸一个人的手机号(198xxxxxxxx),不使用代理
+>
+>```shell
+>python main.py run -t 64 -p 198xxxxxxxx -e 0
+>```
+>
+>启动64个线程,轰//炸一个人的手机号(198xxxxxxxx),启动循环轰//炸,  每次间隔30秒
+>
+>```shell
+>python smsboom.py run -t 64 -p 198xxxxxxxx -i 30 -e 0
+>```
+>
+>启动64个线程,轰//炸一个人的手机号(198xxxxxxxx),启动循环轰//炸, 每次间隔30秒, 开启代理，每次轰炸在10个代理中随机选择一个代理搭配一个api，进行轰炸
+>
+>```shell
+>python smsboom.py run -t 64 -p 198xxxxxxxx -f 60 -i 30 -e 10
+>```
+>
+>启动64个线程,轰//炸多个人的手机号(198xxxxxxxx,199xxxxxxxx), 每次间隔30秒, 开启代理,每次轰炸在10个代理中随机选择一个代理搭配一个api
+>
+>```shell
+>python smsboom.py run -t 64 -p 198xxxxxxxx -p 199xxxxxxxx -f 60 -i 30 -e 10
+>```
+>
+>### 效果展现
+>
+>![](README.assets/test.gif)
 
 ### Flask 前端调试
 
-> **前提是已经根据前文 Quick Start 的方式安装好 pipenv 环境**
+> **前提是已经根据前文 Quick Start 的方式安装好 环境**
 
 ```shell
-pipenv shell # 激活虚拟环境
 python run_flask_app.py start -p 9090 # 监听9090端口
-提示ModuleNotFoundError: No module named 'xxx' 可使用pip install model_name
 ```
 
 **运行帮助:**
@@ -290,27 +210,3 @@ Options:
 
 ![](img/webui-test.png)  
 ![](img/webui-test-2.png)  
-
-## 赞助
-[爱发电🔗](https://afdian.net/@smsboom)  
-
-> 赞助的金额将用于我每月治疗 **抑/郁症** 的支出.谢谢大家的支持和鼓励! **比心ing**
-
-
-## Star ♥ 趋势图
-
-<img src="https://starchart.cc/OpenEthan/smsboom.svg">
-
-## ✨讨论
-
-欢迎加入讨论对项目提出问题和建议！！！mua!
-
-### 企鹅🐧群
-> 企鹅群不允许讨论相关敏感信息!违者上飞机票✈
-
-2022/7/6 停止运作.
-
-### Telegram Channel (TG群组)
-> 涉及敏/感信息,政/治,民/主运动话题请到 **TG群聊**
-
-[SMSBoomPr](https://t.me/SMSBoomPr)
